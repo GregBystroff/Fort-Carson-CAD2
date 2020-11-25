@@ -8,19 +8,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BarracksInventory.Controllers
 {
-    public class InspectionController : Controller
+    public class UnitController : Controller
     {
 
         // F i e l d s   &   P r o p e r t i e s 
 
 
-        private IInspectionRepository _repository;
+        private IUnitRepository _repository;
 
         // C o n s t r u c t o r s 
 
-        public InspectionController(IInspectionRepository inspectionRepository)
+        public UnitController(IUnitRepository unitRepository)
         {
-            _repository = inspectionRepository;
+            _repository = unitRepository;
         }
 
         // M e t h o d s
@@ -28,31 +28,31 @@ namespace BarracksInventory.Controllers
         // C r e a t e
 
         [HttpGet]
-        public IActionResult AddInspection()
+        public IActionResult AddUnit()
         {
             return View();
         }
 
 
         [HttpPost]
-        public IActionResult AddInspection(Inspection insp)
+        public IActionResult AddUnit(Unit u)
         {
             if (ModelState.IsValid)
             {
-                if (insp.Password == insp.ConfirmPassword)
+                if (u.Password == u.ConfirmPassword)
                 {
-                    _repository.AddInspection(insp);
-                    RedirectToAction("UnitDetail", insp.UnitId);
-                    return View("UnitHome", insp);
+                    _repository.AddUnit(u);
+                    RedirectToAction("UnitDetail", u.UnitId);
+                    return View("UnitHome", u);
                 }
                 else
                 {
-                    return View(i);
+                    return View(u);
                 }
             }
             else
             {
-                return View(i);
+                return View(u);
             }
         }
 
@@ -61,23 +61,71 @@ namespace BarracksInventory.Controllers
 
         public IActionResult Index(int id)
         {
-            Inspection inspId = _repository.GetInspectionById(id);
-            return View(inspId);
+            Unit unitId = _repository.GetUnitById(id);
+            return View(unitId);
         }
 
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Search(string phrase)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            IQueryable<Unit> u = _repository.GetUnitByKeyword(phrase);
+            return View(u);
         }
+
+        public IActionResult Search(int unitId)
+        {
+            Unit u = _repository.GetUnitById(unitId);
+            return View(u);
+        }
+
 
 
         // U p d a t e
 
+        [HttpGet]
+        public IActionResult EditUnit(int unitId)
+        {
+            Unit u = _repository.GetProductById(unitId);
+
+            if (u != null)
+            {
+                return View(u);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult EditAccount(Unit u)
+        {
+            Unit updatedUnit = _repository.UpdateProduct(u);
+            if (updatedUnit == null)
+            {
+                return RedirectToAction("Index");
+                // updatedProduct = _repository.GetProductById(1);
+            }
+            return RedirectToAction("ProductDetail", new { unitId = u.UnitId });
+        }
+
 
         // D e l e t e
 
+        [HttpGet]
+        public IActionResult DeleteUnit(int id)
+        {
+            Unit unit = _repository.GetUnitById(id);
+            if (unit != null)
+            {
+                return View(unit);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteUnit(Unit unit, int id)
+        {
+            _repository.DeleteUnit(id);
+            return RedirectToAction("Index");
+        }
 
 
     }

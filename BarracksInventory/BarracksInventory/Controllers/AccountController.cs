@@ -13,16 +13,17 @@ namespace BarracksInventory.Controllers
     {
         // F i e l d s   &    P r o p e r t i e s
 
-        private readonly ILogger<AccountController> _logger;
 
         private IAccountRepository _repository;
 
 
         // C o n t r o l l e r s 
-        public AccountController(ILogger<AccountController> logger)
+
+        public AccountController(IAccountRepository accountRepository)
         {
-            _logger = logger;
+            _repository = accountRepository;
         }
+
 
         // M e t h o d s
 
@@ -70,35 +71,29 @@ namespace BarracksInventory.Controllers
 
         // U p d a t e
 
-        public IActionResult EditAccount()
+        [HttpGet]
+        public IActionResult EditAccount(int acctId)
         {
-            // Go to database with id and get account with that id.
-            // This is a mock up DB.
 
-            Account a = new Account
+            Account a = _repository.GetAccountById(acctId);
+
+            if(a != null)
             {
-                AccountId = 1,
-                UnitId =1,
-                Name = "Guy Smiley",
-                Email = "123-45-6789",
-                Phone = "987-654-3210",
-                StreetAddress = "BLDG 10005, RM 105, Old Ironsides Rd",
-                City = "Fort Hood"
-            };
-            return View(a);
+                return View(a);
+
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
         public IActionResult EditAccount(Account a)
         {
-            if (ModelState.IsValid)
+            Account updatedAccount = _repository.EditAccount(a);
+            if (updatedAccount == null)
             {
-                return View("UserHome", a);
+                return RedirectToAction("Index");
             }
-            else
-            {
-                return View(a);
-            }
+            return RedirectToAction(new { acctId = a.AccountId });
         }
 
 

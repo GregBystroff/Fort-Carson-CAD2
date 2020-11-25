@@ -9,22 +9,23 @@ namespace Loginform.Controllers
         // GET: /login/  
         static List<User> user = new List<User>();
 
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            return View(sun);
+            return View(user);
         }
-        public ActionResult Record(User u)
+        public IActionResult Record(User u)
         {
             return View(u);
         }
 
-        public ActionResult Login()
+        [HttpGet]
+        public IActionResult Login()
         {
             return View();
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Login(User u)
+        [HttpPost]
+        public IActionResult Login(User u)
         {
             if (!ModelState.IsValid)
             {
