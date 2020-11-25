@@ -10,20 +10,71 @@ namespace BarracksInventory.Models
     {
         //   F i e l d s   &   P r o p e r t i e s
 
-        private BarracksInventoryDbContext context;
+        private AppDbContext _context;
         //   C o n s t r u c t o r s
 
-        public EfUnitRepository(BarracksInventoryDbContext ctex)
+        public EfUnitRepository(AppDbContext context)
         {
-            context = ctex;
+            _context = context;
         }
 
         //   M e t h o d s
-        public IQueryable<Unit> Units => throw new NotImplementedException();
+        
+        // create
+        public Unit AddUnit(Unit u)
+        {
+            _context.Units.Add(u);
+            _context.SaveChanges();
+            return u;
+        }
+
+        // read
 
         public IQueryable<Unit> GetAllUnits()
         {
-            throw new NotImplementedException();
+            return _context.Units;
         }
+
+        public IQueryable<Unit> GetUnitByKeyword(string word)
+        {
+            return _context.Units.Where(unit => unit.Name.Contains(word));
+        }
+
+        public Unit GetUnitById(int id)
+        {
+            return _context.Units.Find(id);
+        }
+
+        // update
+
+        public Unit EditUnit(Unit u)
+        {
+            Unit unitToEdit = _context.Units.Find(u.UnitId);
+            if (unitToEdit != null)
+            {
+                unitToEdit.Name = u.Name;
+                unitToEdit.Address = u.Address;
+                unitToEdit.Rep = u.Rep;
+                unitToEdit.Phone = u.Phone;
+                _context.SaveChanges();
+            }
+            return unitToEdit;
+        }
+
+        // delete
+
+        public bool DeleteUnit(int id)
+        {
+            Unit unitToDelete = _context.Units.Find(id);
+            if(unitToDelete != null)
+            {
+                _context.Units.Remove(unitToDelete);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+            
+        }
+
     }
 }

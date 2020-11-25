@@ -4,12 +4,26 @@ namespace BarracksInventory.Models
 {
     interface IUnitRepository
     {
-        //   F i e l d s   and   P r o p e r t i e s
-        IQueryable<Unit> Units { get; }
 
-        // Constructors (not in an interface)
-        // Methods
+        // create
+
+        public Unit AddUnit(Unit u);
+
+        // read
 
         public IQueryable<Unit> GetAllUnits();
+        public Unit GetUnitById(int id);
+        public IQueryable<Unit> GetUnitByKeyword(string word);
+
+
+        // update
+
+        public Unit EditUnit(Unit u);
+
+
+        // delete
+
+        public bool DeleteUnit(int id);
+
     }
 }
