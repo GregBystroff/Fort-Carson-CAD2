@@ -39,16 +39,9 @@ namespace BarracksInventory.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (u.Password == u.ConfirmPassword)
-                {
                     _repository.AddUnit(u);
-                    RedirectToAction("UnitDetail", u.UnitId);
-                    return View("UnitHome", u);
-                }
-                else
-                {
-                    return View(u);
-                }
+                    return RedirectToAction("UnitDetail", u);
+                    // return View("UnitHome", u);
             }
             else
             {
@@ -78,14 +71,17 @@ namespace BarracksInventory.Controllers
             return View(u);
         }
 
-
+        public IActionResult UnitDetail(Unit unit)
+        {
+            return View(unit);
+        }
 
         // U p d a t e
 
         [HttpGet]
         public IActionResult EditUnit(int unitId)
         {
-            Unit u = _repository.GetProductById(unitId);
+            Unit u = _repository.GetUnitById(unitId);
 
             if (u != null)
             {
@@ -95,9 +91,9 @@ namespace BarracksInventory.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditAccount(Unit u)
+        public IActionResult EditUnit(Unit u)
         {
-            Unit updatedUnit = _repository.UpdateProduct(u);
+            Unit updatedUnit = _repository.EditUnit(u);
             if (updatedUnit == null)
             {
                 return RedirectToAction("Index");

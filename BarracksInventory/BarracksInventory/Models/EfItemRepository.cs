@@ -2,8 +2,7 @@
 
 namespace BarracksInventory.Models
 {
-    public class EfItemRepository
-        : IItemRepository
+    public class EfItemRepository : IItemRepository
     {
         //   F i e l d s   &   P r o p e r t i e s
 
@@ -33,15 +32,16 @@ namespace BarracksInventory.Models
             return _context.Items.Where(item => item.SSN.Equals(a.SSN));
         }
 
+        public Item GetItemById(int id)
+        {
+            return _context.Items.Find(id);
+        }
+
         public IQueryable<Item> GetItemByKeyword(string word)
         {
             return _context.Items.Where(item => item.Name.Contains(word));
         }
 
-        public Item GetItemById(int id)
-        {
-            return _context.Items.Find(id);
-        }
 
         // update
 
@@ -57,6 +57,8 @@ namespace BarracksInventory.Models
             }
             return itemToEdit;
         }
+        // Add security to lock out edit while deployed.
+
 
         // delete
 

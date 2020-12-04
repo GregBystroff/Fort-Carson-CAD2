@@ -5,18 +5,20 @@ using System.Threading.Tasks;
 
 namespace BarracksInventory.Models
 {
-    public class EfUnitRepository
-        : IUnitRepository
+    public class EfUnitRepository : IUnitRepository
     {
         //   F i e l d s   &   P r o p e r t i e s
 
         private AppDbContext _context;
+
+
         //   C o n s t r u c t o r s
 
         public EfUnitRepository(AppDbContext context)
         {
             _context = context;
         }
+
 
         //   M e t h o d s
         
@@ -45,6 +47,7 @@ namespace BarracksInventory.Models
             return _context.Units.Find(id);
         }
 
+
         // update
 
         public Unit EditUnit(Unit u)
@@ -61,6 +64,7 @@ namespace BarracksInventory.Models
             return unitToEdit;
         }
 
+
         // delete
 
         public bool DeleteUnit(int id)
@@ -75,6 +79,7 @@ namespace BarracksInventory.Models
             return false;
             
         }
+
 
     }
 }

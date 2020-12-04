@@ -36,21 +36,13 @@ namespace BarracksInventory.Controllers
         }
 
         [HttpPost]
-        [HttpPost]
         public IActionResult AddAccount(Account a)
         {
             if (ModelState.IsValid)
             {
-                if (a.Password == a.ConfirmPassword)
-                {
                     _repository.AddAccount(a);
-                    RedirectToAction("AccountDetail", a.AccountId);
-                    return View("UserHome", a);
-                }
-                else
-                {
-                    return View(a);
-                }
+                    return RedirectToAction("AccountDetail", a.SSN);
+                    // return View("AccountDetail", a);
             }
             else
             {
@@ -61,21 +53,24 @@ namespace BarracksInventory.Controllers
 
         // R e a d
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult AccountDetail(string SSN)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            Account requestedAccount = _repository.GetAccountBySSN(SSN);
+            return View(requestedAccount);
         }
 
+        // GetAccountsByUnit Method
+
+        // GetAll Accounts Method
 
 
         // U p d a t e
 
         [HttpGet]
-        public IActionResult EditAccount(int acctId)
+        public IActionResult EditAccount(string SSN)
         {
 
-            Account a = _repository.GetAccountById(acctId);
+            Account a = _repository.GetAccountBySSN(SSN);
 
             if(a != null)
             {
@@ -93,16 +88,16 @@ namespace BarracksInventory.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return RedirectToAction(new { acctId = a.AccountId });
+            return RedirectToAction("AccountDetail", updatedAccount);
         }
 
 
         // D e l e t e
 
         [HttpGet]
-        public IActionResult DeleteAccount(int id)
+        public IActionResult DeleteAccount(string SSN)
         {
-            Account account = _repository.GetAccountById(id);
+            Account account = _repository.GetAccountBySSN(SSN);
             if (account != null)
             {
                 return View(account);
@@ -111,9 +106,9 @@ namespace BarracksInventory.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteAccount(Account account, int id)
+        public IActionResult DeleteAccount(Account account, string SSN)
         {
-            _repository.DeleteAccount(id);
+            _repository.DeleteAccount(SSN);
             return RedirectToAction("Index");
         }
 

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BarracksInventory.Models
 {
-    interface IInspectionRepository
+    public interface IInspectionRepository
     {
         // create
 
@@ -13,7 +13,8 @@ namespace BarracksInventory.Models
 
         // read
 
-        public IQueryable<Inspection> GetAccountInspections(Account a);
+        public IQueryable<Inspection> GetAccountInspections(Unit u);
+
         public Inspection GetInspectionById(int id);
 
         // update

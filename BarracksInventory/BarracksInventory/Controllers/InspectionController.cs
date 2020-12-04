@@ -33,7 +33,7 @@ namespace BarracksInventory.Controllers
         {
             return View();
         }
-
+        // Back, Submit buttons
 
         [HttpPost]
         public IActionResult AddInspection(Inspection insp)
@@ -41,8 +41,8 @@ namespace BarracksInventory.Controllers
             if (ModelState.IsValid)
             {
                     _repository.AddInspection(insp);
-                    RedirectToAction("UnitDetail", insp.UnitId);
-                    return View("UnitHome", insp);
+                    return RedirectToAction("InspectionDetails", insp.InspectionId);
+                    // return View("UnitHome", insp);
             }
             else
             {
@@ -58,10 +58,11 @@ namespace BarracksInventory.Controllers
             Inspection inspId = _repository.GetInspectionById(id);
             return View(inspId);
         }
+        // ID passed in through "Unit Inspections" view. Shows all details for that inspection.
 
-        public IActionResult InspectionDetails(Account a)
+        public IActionResult GetInspectionByUnit(Unit u)
         {
-            IQueryable<Inspection> inspections = _repository.GetAccountInspections(a);
+            IQueryable<Inspection> inspections = _repository.GetAccountInspections(u);
             return View(inspections);
         }
 

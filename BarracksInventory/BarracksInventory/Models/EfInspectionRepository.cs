@@ -2,8 +2,7 @@
 
 namespace BarracksInventory.Models
 {
-    public class EfInspectionRepository
-        : IInspectionRepository
+    public class EfInspectionRepository : IInspectionRepository
     {
         //   F i e l d s   &   P r o p e r t i e s
 
@@ -30,9 +29,9 @@ namespace BarracksInventory.Models
 
         // read
 
-        public IQueryable<Inspection> GetAccountInspections(Account a)
+        public IQueryable<Inspection> GetAccountInspections(Unit u)
         {
-            return _context.Inspections.Where(insp => insp.SSN.Equals(a.SSN));
+            return _context.Inspections.Where(insp => insp.UnitId.Equals(u.UnitId));
         }
 
         public Inspection GetInspectionById(int id)

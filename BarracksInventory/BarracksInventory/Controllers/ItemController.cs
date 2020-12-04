@@ -16,7 +16,7 @@ namespace BarracksInventory.Controllers
         private IItemRepository _repository;
 
 
-        // C o n t r o l l e r s 
+        // C o n s t r u c t o r
         public ItemController(IItemRepository itemRepository)
         {
             _repository = itemRepository;
@@ -33,13 +33,12 @@ namespace BarracksInventory.Controllers
         }
 
         [HttpPost]
-        [HttpPost]
         public IActionResult AddItem(Item item)
         {
             if (ModelState.IsValid)
             {
                     _repository.AddItem(item);
-                    RedirectToAction("AddItem", item.itemId);
+                    RedirectToAction("AddItem", item.ItemId);
                     return View("UserHome", item);
             }
             else

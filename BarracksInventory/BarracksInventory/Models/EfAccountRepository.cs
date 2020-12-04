@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace BarracksInventory.Models
 {
-    public class EfAccountRepository 
-        : IAccountRepository
+    public class EfAccountRepository : IAccountRepository
     {
         //   F i e l d s   &   P r o p e r t i e s
 
@@ -41,9 +40,11 @@ namespace BarracksInventory.Models
             return _context.Accounts.Where(account => account.Name.Contains(word));
         }
 
-        public IQueryable<Account> GetAccountByLast4(string last4)
+        public Account GetAccountBySSN(string SSN)
         {
-            return _context.Accounts.Where(account => account.SSN.Contains(last4));
+            return _context.Accounts.Where(a => SSN == a.SSN)
+                    .FirstOrDefault();
+                    
         }
 
         // update

@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Greg\\source\\repos\\BarracksInventory\\BarracksInventory\\BarracksInventory.csproj": {}
+    "C:\\Users\\patri\\Desktop\\Fort-Carson-CAD2-main\\BarracksInventory\\BarracksInventory\\BarracksInventory.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Greg\\source\\repos\\BarracksInventory\\BarracksInventory\\BarracksInventory.csproj": {
+    "C:\\Users\\patri\\Desktop\\Fort-Carson-CAD2-main\\BarracksInventory\\BarracksInventory\\BarracksInventory.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Greg\\source\\repos\\BarracksInventory\\BarracksInventory\\BarracksInventory.csproj",
+        "projectUniqueName": "C:\\Users\\patri\\Desktop\\Fort-Carson-CAD2-main\\BarracksInventory\\BarracksInventory\\BarracksInventory.csproj",
         "projectName": "BarracksInventory",
-        "projectPath": "C:\\Users\\Greg\\source\\repos\\BarracksInventory\\BarracksInventory\\BarracksInventory.csproj",
-        "packagesPath": "C:\\Users\\Greg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Greg\\source\\repos\\BarracksInventory\\BarracksInventory\\obj\\",
+        "projectPath": "C:\\Users\\patri\\Desktop\\Fort-Carson-CAD2-main\\BarracksInventory\\BarracksInventory\\BarracksInventory.csproj",
+        "packagesPath": "C:\\Users\\patri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\patri\\Desktop\\Fort-Carson-CAD2-main\\BarracksInventory\\BarracksInventory\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Greg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\patri\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -31,6 +30,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -42,6 +42,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -72,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

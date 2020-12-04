@@ -2,27 +2,30 @@
 
 namespace BarracksInventory.Models
 {
-    internal interface IAccountRepository
+    public interface IAccountRepository
     {
         // create
 
-        public Unit AddAccount(Account u);
+        public Account AddAccount(Account a);
+
 
         // read
 
         public IQueryable<Account> GetAllAccounts();
-        public Unit GetAccountByLast4(string last4);
+
+        public Account GetAccountBySSN(string SSN);
+
         public IQueryable<Account> GetAccountByKeyword(string word);
 
 
         // update
 
-        public Unit EditAccount(Account u);
+        public Account EditAccount(Account a);
 
 
         // delete
 
-        public bool DeleteAccount(int id);
+        public bool DeleteAccount(string ssn);
 
     }
 }
