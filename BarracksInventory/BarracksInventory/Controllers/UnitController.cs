@@ -32,16 +32,18 @@ namespace BarracksInventory.Controllers
         {
             return View();
         }
-
+        // View to show: AddUnit
+        // Form needed (Unit Name, Rear Det Rep Name, Rear Det Rep Phone Number, Unit Address)
+        // Buttons: Back (Index), Submit (UnitDetails)
 
         [HttpPost]
         public IActionResult AddUnit(Unit u)
         {
             if (ModelState.IsValid)
             {
-                    _repository.AddUnit(u);
-                    return RedirectToAction("UnitDetail", u);
-                    // return View("UnitHome", u);
+                _repository.AddUnit(u);
+                return RedirectToAction("UnitDetail", u);
+                // return View("UnitHome", u);
             }
             else
             {
@@ -57,6 +59,9 @@ namespace BarracksInventory.Controllers
             Unit unitId = _repository.GetUnitById(id);
             return View(unitId);
         }
+        // View to show: Index
+        // Log-In Option / Create Unit Rep Account
+        // Buttons: Log-In (LogIn), Create Unit (CreateUnit)
 
 
         public IActionResult Search(string phrase)
@@ -64,6 +69,10 @@ namespace BarracksInventory.Controllers
             IQueryable<Unit> u = _repository.GetUnitByKeyword(phrase);
             return View(u);
         }
+        // View to show: Search (Generic)
+        // Both search parameters on same page.
+        //Buttons: Serach button per field
+
 
         public IActionResult Search(int unitId)
         {
@@ -71,10 +80,14 @@ namespace BarracksInventory.Controllers
             return View(u);
         }
 
+
         public IActionResult UnitDetail(Unit unit)
         {
             return View(unit);
         }
+        // View to show: UnitDetail
+        // Buttons: Back (HomePage), Edit (EditUnit), Delete (HomePage)
+
 
         // U p d a t e
 
@@ -89,6 +102,10 @@ namespace BarracksInventory.Controllers
             }
             return RedirectToAction("Index");
         }
+        // View to show: EditUnit
+        // Must pass a unit Id, must have form (Unit Name, Rear Det Rep Name, Rear Det Rep Phone Number, Unit Address)
+        //Buttons: Cancel (UnitDetail), Submit (UnitDetail)
+
 
         [HttpPost]
         public IActionResult EditUnit(Unit u)
@@ -115,6 +132,9 @@ namespace BarracksInventory.Controllers
             }
             return RedirectToAction("Index");
         }
+        // View to show: DeleteUnit
+        // Form: Unit Name
+        // Buttons: Delete (HomePage), Cancel (UnitDetail)
 
         [HttpPost]
         public IActionResult DeleteUnit(Unit unit, int id)

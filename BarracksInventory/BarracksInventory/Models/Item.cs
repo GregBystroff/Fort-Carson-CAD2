@@ -20,5 +20,7 @@ namespace BarracksInventory.Models
 
         [Column(TypeName = "decimal(8, 2)")]
         public decimal  Price       { get; set; }     // not null
+
+        public string   Description { get; set; }
     }
 }

@@ -1,0 +1,7 @@
+C:\Users\patri\Desktop\Fort-Carson-CAD2-main\BarracksInventory\BarracksInventory\obj\Debug\netcoreapp3.1\BarracksInventory.csprojAssemblyReference.cache
+C:\Users\patri\Desktop\Fort-Carson-CAD2-main\BarracksInventory\BarracksInventory\obj\Debug\netcoreapp3.1\BarracksInventory.AssemblyInfoInputs.cache
+C:\Users\patri\Desktop\Fort-Carson-CAD2-main\BarracksInventory\BarracksInventory\obj\Debug\netcoreapp3.1\BarracksInventory.AssemblyInfo.cs
+C:\Users\patri\Desktop\Fort-Carson-CAD2-main\BarracksInventory\BarracksInventory\obj\Debug\netcoreapp3.1\BarracksInventory.csproj.CoreCompileInputs.cache
+C:\Users\patri\Desktop\Fort-Carson-CAD2-main\BarracksInventory\BarracksInventory\obj\Debug\netcoreapp3.1\BarracksInventory.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\patri\Desktop\Fort-Carson-CAD2-main\BarracksInventory\BarracksInventory\obj\Debug\netcoreapp3.1\BarracksInventory.RazorAssemblyInfo.cache
+C:\Users\patri\Desktop\Fort-Carson-CAD2-main\BarracksInventory\BarracksInventory\obj\Debug\netcoreapp3.1\BarracksInventory.RazorAssemblyInfo.cs

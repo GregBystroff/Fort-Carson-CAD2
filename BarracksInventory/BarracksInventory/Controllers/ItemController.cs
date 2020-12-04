@@ -31,6 +31,10 @@ namespace BarracksInventory.Controllers
         {
             return View();
         }
+        // View to show: AddItem
+        // Form: Item Name, Qty, Price (opt), Description (opt)
+        //Buttons: Back (ItemDetails), Submit (ItemDetails)
+
 
         [HttpPost]
         public IActionResult AddItem(Item item)
@@ -50,12 +54,14 @@ namespace BarracksInventory.Controllers
 
         // R e a d
 
-        public IActionResult Index(Account a)
+        public IActionResult ItemDetails(Account a)
         {
             IQueryable<Item> inventory = _repository.GetAccountItems(a);
-            return View(inventory);
+            return View("ItemDetails", inventory);
         }
-
+        // View to show: ItemDetails
+        // Buttons: Back (HomePage), Add Item (AddItem), Edit Item (EditItem), 
+        //          Delete Item (DeleteItem), Search Item (SearchItem)
 
         public IActionResult Search(string phrase)
         {
@@ -63,11 +69,13 @@ namespace BarracksInventory.Controllers
             return View(i);
         }
 
+
         public IActionResult Search(int itemId)
         {
             Item i = _repository.GetItemById(itemId);
             return View(i);
         }
+        // Search pending implementation.  Not used yet.
 
 
         // U p d a t e
@@ -84,6 +92,10 @@ namespace BarracksInventory.Controllers
             }
             return RedirectToAction("Index");
         }
+        // View to show: EditItem
+        // Form: Item Name, Qty, Price (opt), Description (opt)
+        // Buttons: Cancel (ItemDetails), Submit (ItemDetails)
+
 
         [HttpPost]
         public IActionResult EditItem(Item item)
@@ -110,6 +122,10 @@ namespace BarracksInventory.Controllers
             }
             return RedirectToAction("UserHome");
         }
+        // View to show: DeleteItem
+        // Confirmation Bubble, Show details of that item
+        // Buttons: Cancel (ItemDetails), Commit (ItemDetails
+
 
         [HttpPost]
         public IActionResult DeleteItem(Item item, int id)
